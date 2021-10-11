@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div id="myApp" class="p-5">
+        <h2 class="mb-3 text-center">Todos</h2>
+        <form v-on:submit.prevent="handleSubmit()">
+            <input type="text" name="name" v-model="this.name" placeholder="I have to do...">
+            <input type="time" name="time" v-model="this.time">
+            <input type="submit" name="subBtn">
+        </form>
+        <ul>
+            <li v-for="task in tasks" v-bind:class="{ complete: task.comp }">
+                <p>
+                    {{ task.name }}
+                </p>
+                <p>
+                    {{task.time}}
+                </p>
+                <p v-on:click="rm(task)">
+                    ❌
+                </p>
+                <p v-on:click="comp(task)">
+                    ✅
+                </p>
+            </li>
+        </ul>
+    </div>
+    <script src="https://unpkg.com/vue@next"></script>
+    <script>
+        const myApp = {
+            data() {
+                return {
+                    name: '',
+                    time: '',
+                    tasks: [
+                        {name: 'Wake Up', time: '08:00', comp: false },
+                        {name: 'Shower', time: '08:05', comp: false },
+                        {name: 'Breakfast', time: '08:25', comp: false },
+                        {name: 'Style Hair', time: '08:50', comp: false },
+                        {name: 'Leave House', time: '09:00', comp: false },
+                    ],
+                }
+            },
+            methods: {
+                rm(curtask){this.tasks = this.tasks.filter(task => task.name !== curtask.name)},
+                comp(curTask){curTask.comp = !curTask.comp},
+                handleSubmit(){
+                    console.log('submit!', {name: this.name, time: this.time})
+                    this.tasks.unshift({name: this.name, time: this.time, comp:false})
+                }
+            }
+        }
+        Vue.createApp(myApp).mount('#myApp');
+    </script>
+    <style>
+        body {background:#8f90c5;}
+        h2 {color: #200552;}
+        #myApp {
+            max-width: 750px;
+            min-width: 350px;
+            margin: 0 auto;
+        }
+        #myApp ul {padding: 0;}
+        #myApp ul li {
+            display: grid;
+            grid-template-columns: 6fr 2fr 1fr 1fr;
+            padding-left: 20px;
+            margin: 15px 0;
+            border-radius: 10px;
+            box-shadow: 2px 2px 7px -3px rgba(0, 0, 0, 0.75);
+            background: #5355b4;
+            color:white;
+
+        }
+        .complete {opacity: 0.3;}
+        #myApp ul li p {margin: 20px 0;cursor: pointer;}
+        input {
+            border: none;
+            box-shadow: 2px 2px 7px -3px rgba(0, 0, 0, 0.75);
+            border-radius: 10px;
+            padding: 10px;
+        }
+        form {display: grid; grid-template-columns: 5fr 2fr 2fr; gap: 5px;}
+    </style>
+</body>
+</html>
