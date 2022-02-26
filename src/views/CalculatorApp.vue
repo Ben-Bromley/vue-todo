@@ -3,5 +3,5 @@
 </script>
 <template>
 <IconEcosystemVue />
-    <p>this is a calculator app</p>
+    <p>This is a calculator app</p>
 </template>
