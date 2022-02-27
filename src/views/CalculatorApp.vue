@@ -3,9 +3,9 @@ import IconEcosystemVue from "../components/icons/IconEcosystem.vue";
 import { ref, computed } from "vue";
 
 // Array(2), numbers to be displayed
-const calculatorValue = ref(["", ""]);
+const calcVal = ref(["", ""]);
 // current mathematical operation, to be represented as a HTML entity
-const currentOperation = ref(null);
+const curOp = ref(null);
 
 // list of button labels
 const buttons = ref([
@@ -16,10 +16,10 @@ const buttons = ref([
 ]);
 
 // return first number or all values depending on if an operation has been set
-const displayValue = computed(() => {
-  return currentOperation.value === null
-    ? calculatorValue.value[0]
-    : calculatorValue.value[0] + ` ${currentOperation.value} ` + calculatorValue.value[1];
+const displayVal = computed(() => {
+  return curOp.value === null
+    ? calcVal.value[0]
+    : calcVal.value[0] + ` ${curOp.value} ` + calcVal.value[1];
 });
 
 
@@ -29,49 +29,51 @@ const handleClick = (buttonValue) => {
     if (typeof buttonValue === "number") {
     // if value is number, append it.
     //  append to 1st or 2nd value depending on if an operation has been chosen
-    calculatorValue.value[currentOperation.value === null ? 0 : 1] += String(buttonValue);
+    calcVal.value[curOp.value === null ? 0 : 1] += String(buttonValue);
   } else if (buttonValue === "&equals;") {
 
     // only run if both operands are set
-    if (!calculatorValue.value[1]){
+    if (!calcVal.value[1]){
       return;
     }
 
     // if the button pressed is equals, get the answer
     let answer = equals();
 
-    // set answer if not null
+    // set answer to show if not null
     // this means the answer can be used in a future operation
     if (answer) {
-      calculatorValue.value = [answer, ""];
-      currentOperation.value = null;
+      calcVal.value = [answer, ""];
+      curOp.value = null;
     } else {
     // prevents issues cause by not selecting an operation before clicking equals
       clear();
     }
 
   } else if (buttonValue === ".") {
+
     // if there's no number before this, append a 0 first
-    if (calculatorValue.value[currentOperation.value === null ? 0 : 1].charAt(-1) != 0){
-        calculatorValue.value[currentOperation.value === null ? 0 : 1] += "0"
+    let checkVal = calcVal.value[curOp.value === null ? 0 : 1]
+    if (!checkVal.charAt(checkVal.length -1)){
+        calcVal.value[curOp.value === null ? 0 : 1] += "0"
     }
     // append decimal point normally
-    calculatorValue.value[currentOperation.value === null ? 0 : 1] += "."
+    calcVal.value[curOp.value === null ? 0 : 1] += "."
 
   } else {
     //   change operator
     //   only update operator if second number is unset
-    if (calculatorValue.value[1] === "") {
-      currentOperation.value = buttonValue;
+    if (calcVal.value[1] === "") {
+      curOp.value = buttonValue;
     }
   }
 };
 
 const equals = () => {
   // convert values to integers
-  let no1 = parseFloat(calculatorValue.value[0]);
-  let no2 = parseFloat(calculatorValue.value[1]);
-  switch (currentOperation.value) {
+  let no1 = parseFloat(calcVal.value[0]);
+  let no2 = parseFloat(calcVal.value[1]);
+  switch (curOp.value) {
     case "&divide;":
       return no1 / no2;
       break;
@@ -91,8 +93,8 @@ const equals = () => {
 };
 
 const clear = () => {
-  calculatorValue.value = ["", ""];
-  currentOperation.value = null;
+  calcVal.value = ["", ""];
+  curOp.value = null;
 };
 </script>
 <template>
@@ -102,7 +104,7 @@ const clear = () => {
       Calculator
     </h1>
     <div>
-      <p id="calculator-value" v-html="displayValue"></p>
+      <p id="calculator-value" v-html="displayVal"></p>
     </div>
     <section id="calculator-grid">
       <button
