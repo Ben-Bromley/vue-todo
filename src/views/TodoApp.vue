@@ -37,7 +37,7 @@ const addTodo = () => {
     />
     <ul>
       <li v-for="todo in todos" :key="todo.id">
-        <button @click="completeTask(todo)">✅</button>
+        <button @click="completeTask(todo)" >✅</button>
         <span :class="{ complete: todo.done }">{{ todo.text }}</span>
         <button @click="deleteTask(todo)" style="margin-left: auto">❌</button>
       </li>
@@ -46,17 +46,17 @@ const addTodo = () => {
 </template>
 <style scoped>
 @import url('../assets/app.css');
-/* section.container {
-  width: 100%;
-  max-width: calc(400px + 25vw);
-  margin: 0 auto;
-} */
 
 li,
 input {
-  font-size: calc(2vmax + 0.4rem);
   width: 100%;
   display: flex;
+  align-items: center;
+}
+
+button, li, input {
+  font-size: calc(2vmax + 0.4rem);
+
 }
 
 input[type="text"] {
