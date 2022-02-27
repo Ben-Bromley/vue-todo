@@ -45,16 +45,12 @@ const addTodo = () => {
   </section>
 </template>
 <style scoped>
+@import url('../assets/app.css');
 /* section.container {
   width: 100%;
   max-width: calc(400px + 25vw);
   margin: 0 auto;
 } */
-
-h1 {
-  margin-bottom: 25px;
-  font-size: 2.5rem;
-}
 
 li,
 input {
