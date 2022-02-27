@@ -53,7 +53,7 @@ const handleClick = (buttonValue) => {
   } else if (buttonValue === ".") {
 
     // if there's no number before this, append a 0 first
-    let checkVal = calcVal.value[curOp.value === null ? 0 : 1]
+    let checkVal = String(calcVal.value[curOp.value === null ? 0 : 1])
     if (!checkVal.charAt(checkVal.length -1)){
         calcVal.value[curOp.value === null ? 0 : 1] += "0"
     }
