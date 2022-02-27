@@ -31,6 +31,12 @@ const handleClick = (buttonValue) => {
     //  append to 1st or 2nd value depending on if an operation has been chosen
     calculatorValue.value[currentOperation.value === null ? 0 : 1] += String(buttonValue);
   } else if (buttonValue === "&equals;") {
+
+    // only run if both operands are set
+    if (!calculatorValue.value[1]){
+      return;
+    }
+
     // if the button pressed is equals, get the answer
     let answer = equals();
 
@@ -46,8 +52,8 @@ const handleClick = (buttonValue) => {
 
   } else if (buttonValue === ".") {
     // if there's no number before this, append a 0 first
-    if (!calculatorValue.value[currentOperation.value === null ? 0 : 1].at(-1)){
-        calculatorValue.value[currentOperation.value === null ? 0 : 1] += String(0)
+    if (calculatorValue.value[currentOperation.value === null ? 0 : 1].charAt(-1) != 0){
+        calculatorValue.value[currentOperation.value === null ? 0 : 1] += "0"
     }
     // append decimal point normally
     calculatorValue.value[currentOperation.value === null ? 0 : 1] += "."
