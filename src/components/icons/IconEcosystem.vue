@@ -5,3 +5,10 @@
     />
   </svg>
 </template>
+<style scoped>
+svg {
+  margin-left: 10px;
+  margin-right: 10px;
+  transform: scale(1.5) !important;
+}
+</style>

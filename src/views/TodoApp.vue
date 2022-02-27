@@ -45,11 +45,11 @@ const addTodo = () => {
   </section>
 </template>
 <style scoped>
-section {
+/* section.container {
   width: 100%;
   max-width: calc(400px + 25vw);
   margin: 0 auto;
-}
+} */
 
 h1 {
   margin-bottom: 25px;
@@ -58,7 +58,7 @@ h1 {
 
 li,
 input {
-  font-size: 2vmax;
+  font-size: calc(2vmax + 0.4rem);
   width: 100%;
   display: flex;
 }
