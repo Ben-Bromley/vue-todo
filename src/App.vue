@@ -14,11 +14,11 @@ import { RouterLink, RouterView } from "vue-router";
           height="30"
         />
       </RouterLink>
-      <div>
+      <!-- <div> -->
         <!-- <RouterLink to="/">Home</RouterLink> -->
-        <RouterLink to="/todo">To-Do</RouterLink>
-        <RouterLink to="/calculator">Calculator</RouterLink>
-      </div>
+        <!-- <RouterLink to="/todo">To-Do</RouterLink>
+        <RouterLink to="/calculator">Calculator</RouterLink> -->
+      <!-- </div> -->
     </nav>
   </header>
 

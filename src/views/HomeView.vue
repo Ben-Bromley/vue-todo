@@ -2,12 +2,9 @@
 import { ref } from "vue";
 
 const apps = ref([
-  { title: "Todo App", path: "todo", description: "A simple todo application" },
-  {
-    title: "Calculator App",
-    path: "calculator",
-    description: "A simple calculator application",
-  },
+  { title: "Todo App", path: "todo", description: "Keep track of all your To Do's" },
+  { title: "Calculator App", path: "calculator", description: "A simple calculator application", },
+  { title: "Pocket Solitaire", path: "pocket-solitaire", description: "The classic pocket solitaire game", },
 ]);
 </script>
 
@@ -83,13 +80,14 @@ h1 {
 
 .card-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   grid-gap: 10px;
 }
 .card {
   background: var(--color-background-soft);
-  padding: 10px;
-  border-radius: 5px;
+  padding: 16px;
+  border-radius: 10px;
   user-select: none;
+  margin: 0;
 }
 </style>

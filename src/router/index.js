@@ -18,6 +18,11 @@ const router = createRouter({
       path: '/calculator',
       name: 'calculator app',
       component: () => import ('../views/CalculatorApp.vue')
+    },
+    {
+      path: '/pocket-solitaire',
+      name: 'Pocket Solitaire',
+      component: () => import ('../views/PocketSolitaire.vue')
     }
   ]
 })
