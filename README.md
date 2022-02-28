@@ -5,6 +5,8 @@ Welcome to Vuetilities! This is a simple collection of web-based utility apps I 
 ## Setup and Running Locally
 
 ```bash
-> npm install
-> npm run dev
+$ git clone https://github.com/Ben-Bromley/vuetilities.git
+$ cd vuetilities
+$ npm install
+$ npm run dev
 ```
