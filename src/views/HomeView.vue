@@ -1,13 +1,23 @@
 <script setup>
 import { ref } from "vue";
-
 const apps = ref([
-  { title: "Todo App", path: "todo", description: "Keep track of all your To Do's" },
-  { title: "Calculator App", path: "calculator", description: "A simple calculator application", },
-  { title: "Pocket Solitaire", path: "pocket-solitaire", description: "The classic pocket solitaire game", },
+  {
+    title: "Todo App",
+    path: "todo",
+    description: "Keep track of all your To Do's",
+  },
+  {
+    title: "Calculator App",
+    path: "calculator",
+    description: "A simple calculator application",
+  },
+  {
+    title: "Pocket Solitaire",
+    path: "pocket-solitaire",
+    description: "The classic pocket solitaire game",
+  },
 ]);
 </script>
-
 <template>
   <main>
     <section class="landing">
