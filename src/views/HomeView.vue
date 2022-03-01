@@ -33,17 +33,13 @@ const apps = ref([
       </div>
     </section>
     <section class="card-container">
-      <a
-        :href="'/' + app.path"
-        class="card"
-        v-for="app in apps"
-        :key="app.title"
-      >
-        <div>
+      <!-- :href="'/' + app.path" -->
+      <div class="card" v-for="app in apps" :key="app.title">
+        <RouterLink :to="'/' + app.path">
           <h2>{{ app.title }}</h2>
           <p>{{ app.description }}</p>
-        </div>
-      </a>
+        </RouterLink>
+      </div>
     </section>
   </main>
 </template>
@@ -91,7 +87,7 @@ h1 {
 .card-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  grid-gap: 10px;
+  grid-gap: 15px;
 }
 .card {
   background: var(--color-background-soft);
@@ -99,5 +95,9 @@ h1 {
   border-radius: 10px;
   user-select: none;
   margin: 0;
+}
+
+.card:hover {
+  opacity: 0.7;
 }
 </style>
