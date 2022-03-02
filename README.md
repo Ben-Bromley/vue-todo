@@ -2,7 +2,7 @@
 
 ![To-Do](https://img.shields.io/badge/ToDo-v1.0-42b883)
 ![Calculator](https://img.shields.io/badge/Calculator-v1.0-42b883)
-![Pocket Solitaire](https://img.shields.io/badge/PocketSolitaire-v1.0(DesktopOnly)-42b883)
+![Pocket Solitaire](https://img.shields.io/badge/PocketSolitaire-v1.0-42b883)
 
 <!-- #dd9500 = orange -->
 
@@ -17,3 +17,11 @@ $ cd vuetilities
 $ npm install
 $ npm run dev
 ```
+
+#
+
+## Future Additions:
+
+ - [ ] Use [DEXIEjs](https://dexie.org/) to persist local data
+    - [ ] Remember To-Do's
+    - [ ] Remember Solitaire Game Progress
