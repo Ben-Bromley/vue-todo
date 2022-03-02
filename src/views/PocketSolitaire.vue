@@ -171,7 +171,7 @@ watch(pegs, () => {
     // end game and display modal
     setTimeout(() => {
       alert("GAME OVER");
-    }, 500);
+    }, 350);
   }
 });
 // TODO: add modal with score and streaks and stuff (wordle style)
@@ -182,7 +182,6 @@ watch(pegs, () => {
   <section>
     <div>
       <h1 align="center">Pocket Solitaire</h1>
-      <h3 align="center">(desktop only)</h3>
     </div>
   </section>
   <section id="peg-grid">
@@ -204,7 +203,7 @@ watch(pegs, () => {
         class="pin"
         :draggable="isDraggable"
         @dragstart="startDrag($event, peg)"
-      ></div>
+      />
     </div>
   </section>
   <section id="game-buttons">
@@ -217,25 +216,25 @@ watch(pegs, () => {
 <style scoped>
 @import "../assets/app.css";
 
-h1 {margin-bottom: -10px;}
-h3 {margin-bottom: 30px; font-weight: 300;}
 section#peg-grid {
   display: grid;
-  grid-template-columns: repeat(7, 40px);
+  grid-template-columns: repeat(7, var(--peg-size));
   justify-items: center;
-  grid-gap: 20px;
+  grid-gap: calc(10px + 1vw);
   font-size: 0.8rem;
   margin: 0 auto;
   width: min-content;
 }
 .hole {
-  height: 40px;
-  width: 40px;
+  height: var(--peg-size);
+  width: var(--peg-size);
   background: var(--color-background-mute);
   border-radius: 50%;
-  padding: 5px;
+  padding: calc(3px + 5%);
+  user-select: none;
 }
 .pin {
+  user-select: none;
   height: 100%;
   width: 100%;
   background: var(--color-peg);
@@ -277,6 +276,6 @@ section#game-buttons {
   grid-template-columns: repeat(2, 1fr);
   grid-gap: 10px;
   max-width: 350px;
-  margin: 40px auto;
+  margin: 40px auto 0 auto;
 }
 </style>
