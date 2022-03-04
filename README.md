@@ -25,4 +25,4 @@ $ npm run dev
  - [ ] Use [DEXIEjs](https://dexie.org/) to persist local data
     - [ ] Remember To-Do's
     - [ ] Remember Solitaire Game Progress
- - [ ] Convert Solitaire game to OOP
+ - [x] Convert Solitaire game to OOP
