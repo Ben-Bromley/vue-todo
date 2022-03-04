@@ -3,17 +3,17 @@ import { ref } from "vue";
 const apps = ref([
   {
     title: "Todo App",
-    path: "todo",
+    path: "/todo",
     description: "Keep track of all your To Do's",
   },
   {
     title: "Calculator App",
-    path: "calculator",
+    path: "/calculator",
     description: "A simple calculator application",
   },
   {
     title: "Pocket Solitaire",
-    path: "pocket-solitaire",
+    path: "/pocket-solitaire",
     description: "The classic pocket solitaire game",
   },
 ]);
@@ -33,9 +33,8 @@ const apps = ref([
       </div>
     </section>
     <section class="card-container">
-      <!-- :href="'/' + app.path" -->
       <div class="card" v-for="app in apps" :key="app.title">
-        <RouterLink :to="'/' + app.path">
+        <RouterLink :to="app.path">
           <h2>{{ app.title }}</h2>
           <p>{{ app.description }}</p>
         </RouterLink>
