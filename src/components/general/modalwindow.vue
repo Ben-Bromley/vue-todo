@@ -47,10 +47,11 @@ div.modal-inner p {
 
 div.button-container {
   display: flex;
-  justify-content: space-between;
+  justify-content: stretch;
 }
 
 button {
   margin: 2px;
+  width: 50%;
 }
 </style>
