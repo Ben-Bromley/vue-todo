@@ -1,5 +1,5 @@
 <script setup>
-import { ref, watch, onMounted, callWithAsyncErrorHandling } from "vue";
+import { ref, onMounted, } from "vue";
 import db from "../assets/js/utilities/todo/db";
 import IconDocumentationVue from "../components/icons/IconDocumentation.vue";
 
