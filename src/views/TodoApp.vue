@@ -1,69 +1,18 @@
 <script setup>
-import { ref, onMounted, } from "vue";
+import { ref, onMounted } from "vue";
 import db from "../assets/js/utilities/todo/db";
 import IconDocumentationVue from "../components/icons/IconDocumentation.vue";
+import ToDoApp from "../assets/js/utilities/todo/";
 
-let id = 0;
+const todoApp = new ToDoApp();
 
 const todos = ref([]);
 const thisTodo = ref(null);
-
-const completeTask = async (todo) => {
-  todo.done = !todo.done;
-  const complete = await db.tasks
-    .where("taskId")
-    .equals(todo.id)
-    .modify({ done: todo.done });
-};
-
-const deleteTask = async (todo) => {
-  todos.value = todos.value.filter((t) => t.id != todo.id);
-  const removeTodo = await db.tasks.where("taskId").equals(todo.id).delete();
-};
-
-const addTodo = async () => {
-  // add task to array
-  if (thisTodo.value) {
-    let newTodo = { id: id++, text: thisTodo.value, done: false };
-    todos.value.push(newTodo);
-    thisTodo.value = "";
-
-    // add task to Dexie
-    const saveTodo = await db.tasks.add({
-      taskId: newTodo.id,
-      text: newTodo.text,
-      done: newTodo.done,
-    });
-  }
-};
+const myRefs = { thisTodo, todos };
 
 onMounted(async () => {
-  // get stored tasks
-  let tasks = await db.tasks.toArray();
-
-  // if there's stored tasks, add them to reactive todos ref
-  if (tasks.length) {
-    todos.value = [];
-    tasks.forEach((task) => {
-      todos.value.push({ id: task.taskId, text: task.text, done: task.done });
-    });
-  } else {
-    // if no stored todos, add sample todos and store them
-    todos.value = [
-      { id: id++, text: "Take out the trash", done: false },
-      { id: id++, text: "Do the dishes", done: false },
-    ];
-    todos.value.forEach(async (todo) => {
-      // add task to Dexie
-      const saveInitial = await db.tasks.add({
-        taskId: todo.id,
-        text: todo.text,
-        done: todo.done,
-      });
-    });
-  }
+  todoApp.retrieveTasks(myRefs.todos);
 });
-
 </script>
 <template>
   <section>
@@ -72,8 +21,8 @@ onMounted(async () => {
       (Type in the text box below, and press enter to add the task)
     </p>
     <input
-      @keyup.enter="addTodo()"
       v-model="thisTodo"
+      @keyup.enter="todoApp.addTask(myRefs.thisTodo, myRefs.todos)"
       name="task"
       type="text"
       id="task-input"
@@ -81,9 +30,14 @@ onMounted(async () => {
     />
     <ul>
       <li v-for="todo in todos" :key="todo.id">
-        <button @click="completeTask(todo)">✅</button>
+        <button @click="todoApp.completeTask(todo)">✅</button>
         <span :class="{ complete: todo.done }">{{ todo.text }}</span>
-        <button @click="deleteTask(todo)" style="margin-left: auto">❌</button>
+        <button
+          @click="todoApp.removeTask(todo, myRefs.todos)"
+          style="margin-left: auto"
+        >
+          ❌
+        </button>
       </li>
     </ul>
   </section>
