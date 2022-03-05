@@ -3,6 +3,7 @@ import { ref, onMounted } from "vue";
 import db from "../assets/js/utilities/todo/db";
 import IconDocumentationVue from "../components/icons/IconDocumentation.vue";
 import ToDoApp from "../assets/js/utilities/todo/";
+import TodoItem from "../components/utilities/todo/todo.vue";
 
 const todoApp = new ToDoApp();
 
@@ -23,22 +24,18 @@ onMounted(async () => {
     <input
       v-model="thisTodo"
       @keyup.enter="todoApp.addTask(myRefs.thisTodo, myRefs.todos)"
-      name="task"
       type="text"
       id="task-input"
       placeholder="I have to..."
     />
     <ul>
-      <li v-for="todo in todos" :key="todo.id">
-        <button @click="todoApp.completeTask(todo)">✅</button>
-        <span :class="{ complete: todo.done }">{{ todo.text }}</span>
-        <button
-          @click="todoApp.removeTask(todo, myRefs.todos)"
-          style="margin-left: auto"
-        >
-          ❌
-        </button>
-      </li>
+      <TodoItem
+        v-for="todo in todos"
+        :todo="todo"
+        :key="todo.id"
+        @complete-task="todoApp.completeTask(todo)"
+        @remove-task="todoApp.removeTask(todo, myRefs.todos)"
+      />
     </ul>
   </section>
 </template>
@@ -50,20 +47,17 @@ p.small-text {
   margin-bottom: 10px;
 }
 
-li,
 input {
   width: 100%;
   display: flex;
   align-items: center;
 }
 
-button,
-li,
 input {
   font-size: calc(2vmax + 0.4rem);
 }
 
-input[type="text"] {
+input[type="text"]#task-input {
   padding: 15px;
   margin-bottom: 15px;
   border-radius: 5px;
@@ -73,22 +67,7 @@ input[type="text"] {
   min-width: 250px;
 }
 
-button {
-  background: none;
-  border: none;
-  padding: 5px 20px;
-}
-
 ul {
   padding-left: 0;
-}
-
-li {
-  list-style: none;
-}
-
-.complete {
-  text-decoration: line-through;
-  opacity: 0.5;
 }
 </style>
