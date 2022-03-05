@@ -22,7 +22,7 @@ $ npm run dev
 
 ## Future Additions:
 
- - [ ] Use [DEXIEjs](https://dexie.org/) to persist local data
-    - [ ] Remember To-Do's
+ - [x] Use [DEXIEjs](https://dexie.org/) to persist local data
+    - [x] Remember To-Do's
     - [ ] Remember Solitaire Game Progress
  - [x] Convert Solitaire game to OOP
