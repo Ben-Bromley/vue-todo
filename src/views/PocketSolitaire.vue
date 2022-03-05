@@ -40,8 +40,10 @@ watchEffect(() => {
   <ModalWindow
     :show="showModal"
     title="Game Over"
-    @play-again="playAgain()"
-    @close-window="closeWindow()"
+    message="Would you like to play again?"
+    primaryText="Play Again"
+    @primary="playAgain()"
+    @secondary="closeWindow()"
   />
   <section>
     <div><h1 align="center">Pocket Solitaire</h1></div>

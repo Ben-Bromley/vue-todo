@@ -1,5 +1,5 @@
 <script setup>
-const props = defineProps(["title", "message", "show"]);
+const props = defineProps(["title", "message", "show", "primaryText", "secondaryText"]);
 </script>
 
 <template>
@@ -7,12 +7,11 @@ const props = defineProps(["title", "message", "show"]);
     <div class="modal-inner">
       <div>
         <h1>{{ props.title }}</h1>
-        <p>{{ props.message }}</p>
       </div>
-      <p>Would you like to play again?</p>
+      <p>{{ props.message }}</p>
       <div class="button-container">
-        <button @click="$emit('play-again')">Play Again</button>
-        <button @click="$emit('close-window')">Close Window</button>
+        <button @click="$emit('primary')">{{props.primaryText}}</button>
+        <button @click="$emit('secondary')">Close</button>
       </div>
     </div>
   </section>
@@ -52,6 +51,6 @@ div.button-container {
 }
 
 button {
-    margin: 2px;
+  margin: 2px;
 }
 </style>
